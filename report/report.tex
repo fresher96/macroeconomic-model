@@ -9,12 +9,10 @@
 	
 %	\input{tex/cover.tex}
 %	\input{tex/abstract.tex}
-%	\input{tex/ack.tex}
-	
-	%\addtocounter{page}{1}
-	
-	
-	% indexes/contents
+		
+		
+		
+	% lists/contents
 %	\clearpage\phantomsection\addcontentsline{toc}{section}{Contents}
 %	\tableofcontents
 
@@ -24,18 +22,19 @@
 %	\phantomsection\addcontentsline{toc}{subsection}{List of Tables}
 %	\listoftables
 	
-	%\input{tex/abbreviations.tex}
-	%\input{tex/terminology.tex}
+%	\input{tex/abbreviations.tex}
+	
+	
 	
 	% main matter
 	\clearpage
 	\pagenumbering{arabic}
 	\pagestyle{fancy}
 	
-	\input{tex/introduction.tex}
+	% import files
+	\input{tex/proposal.tex}
 	
 	% references
-%	\nocite{*}
 	\clearpage\phantomsection\addcontentsline{toc}{section}{References}
 	\pagestyle{references}
 	\printbibliography
