@@ -1,0 +1,72 @@
+
+\section{Proposed Model}
+This section describes the proposed model on a high-level.
+The first subsection describes the economic indicators involved in the model.
+The second subsection describes the ODEs system proposed to model the dynamics of these indicators.
+
+Basically, the model is a set of differential equations that describe the inter-relationships between different macroeconomic indicators.
+We are using the term \textit{macroeconomic indicators} to refer to the factors, features, or variables that we would like to model.
+Such as annual GDP growth, unemployment rate, and similar indicators.
+The proposed model is a system of ODEs that tries to capture the dynamics of such indicators.
+Each equation in the system may involve:
+an indicator value, a function of some indicator, a change (differential) of some indicator, and so on.
+This will be clarified shortly in section \ref{sec:model}.
+
+\subsection{Macroeconomic Indicators}
+We classify the indicators used in our model into two categories:
+(a) International indicator (items 1-5), and
+(b) Russia-specific indicators (items 6-11).
+\begin{enumerate}
+\item Annual GDP
+\item Base Interest Rate (from the central bank)
+\item Inflation Rate (correlated with CPI)
+\item Unemployment Rate
+\item Average Wage (i.e average income per person)
+\item USD/RUB (exchange rate of US dollar for ruble)
+\item Brent Crude Oil Price
+\item MOEX Equity Index
+\item State-funded investments (per year)
+\item Defense Spendings
+\item Population Growth Rate
+\end{enumerate}
+We refer to these vectors using a vector
+$\vec{x} = (x_1, \cdots, x_n)$
+where in $n = 11$ and each $x_i$ refers to the corresponding item.
+For example, $x_4$ is unemployment rate.
+
+\subsection{Mathematical Model}
+\label{sec:model}
+The proposed model is encapsulated by the following equation which represents a system of stochastic differential equations (SDEs):
+\begin{equation}
+\label{eq:model}
+d\vec{x} = A \vec{x} \, dt + \Sigma \, d\vec{W_t}
+\end{equation}
+
+$\vec{x}$  is defined in the previous section.
+$A$ is an $n \times n$ matrix of constant coefficients (not dependent on $x$).
+$t$ is time.
+$\Sigma$ is an $n \times n$ matrix.
+$\vec{W_t}$ is a vector of $n$ independent Brownian motion terms.
+
+If we omit the second term for the moment,
+by setting $\Sigma = 0$ for example.
+We can see that the system is simply reduced to a linear system of ODEs.
+The second term introduces stochasticity in our model by using Brownian motion terms.
+
+$\Sigma$ corresponded to a correlation matrix.
+We consider the value of $\Sigma^T \Sigma$ to be of the form $B(x)$.
+That is, $\Sigma^T \Sigma = B(x)$,
+Where $B(x)$ is an $n \times n$ matrix that is dependent on $x$.
+We consider an element $B_{ij}(x)$ of this matrix to have the form
+$B_{ij}(x) = b_{ij} \cdot x + c_{ij}$.
+$b_{ij}$ is a vector of length $n$;
+the dot $\cdot$ is the dot product;
+and the components of the vector $b_{ij}$ along with $c_{ij}$ are constants independent of $x$.
+This model is called an affine model \parencite{citation needed}.
+By this formulation, it can be shown that $\Sigma = \sqrt{B}$ \parencite{citation needed}.
+
+We start with a reduced simplified model where we set $b_{ij} = 0$.
+This basically corresponds to setting $B$ as a constant matrix independent of $x$.
+Which corresponds to $\Sigma$ being independent of $x$.
+After the implementation and calibration of this reduced model,
+we reconsider the original model if time is available.
